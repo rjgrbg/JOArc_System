@@ -1,9 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="JOArc_System.WebForm1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Landingpage.aspx.cs" Inherits="JOArc_System.WebForm1" %>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Joan Arc Youth Organization</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- AOS CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" />
@@ -76,6 +77,16 @@
             background-color: #002c94;
         }
 
+        /* Mobile menu button */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+        }
+
         .header {
             background-image: url('IMAGES/orgimg.jpg');
             background-size: cover;
@@ -104,49 +115,47 @@
         }
 
        .know-more-btn {
-    margin-top: 35px;
-    padding-right: 40px;
-    padding: 15px 30px;
-    padding-left: 40px;
-    background-color: #ffc30f;
-    font-size: 18px;
-    font-weight: bold;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    text-transform: uppercase;
-    color: #333;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    transition: all 0.3s ease;
-    overflow: hidden;
-    position: relative;
-}
+            margin-top: 35px;
+            padding-right: 30px;
+            padding: 15px 20px;
+            padding-left: 40px;
+            background-color: #ffc30f;
+            font-size: 15px;
+            font-family: 'Arial Black';
+            font-weight: bold;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            text-transform: uppercase;
+            color: #333;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
 
-.know-more-btn .arrow {
-    display: inline-block;
-    font-size: 20px;
-    font-weight: bold;
-    transform: translateX(-10px);
-    opacity: 0;
-    transition: all 0.3s ease;
-}
+        .know-more-btn .arrow {
+            display: inline-block;
+            font-size: 20px;
+            font-weight: bold;
+            transform: translateX(90px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
 
-.know-more-btn:hover {
-    background-color: #ba8c00;
-    transform: scale(1.05);
-    color: white;
-    padding-right: 50px; /* makes space for the arrow */
-}
+        .know-more-btn:hover {
+            background-color: #ba8c00;
+            transform: scale(1.05);
+            color: white;
+            padding-right: 30px; /* makes space for the arrow */
+        }
 
-.know-more-btn:hover .arrow {
-    transform: translateX(0);
-    opacity: 1;
-}
-
-
-
+        .know-more-btn:hover .arrow {
+            transform: translateX(0);
+            opacity: 1;
+        }
 
         .section {
             display: flex;
@@ -179,7 +188,7 @@
         .info p {
             font-size: 18px;
             margin-top: 10px;
-            font-family: Calibri ;
+            font-family: Calibri;
         }
 
         .register-btn {
@@ -204,7 +213,8 @@
 
         .activities h3 {
             font-weight: bold;
-            font-size: 25px;
+            font-size: 30px;
+            font-family: 'Arial Black';
             margin-bottom: 50px;
             position: relative;
         }
@@ -243,6 +253,13 @@
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
         }
 
         .activity-card img {
@@ -251,6 +268,11 @@
             object-fit: cover;
             display: block;
             border-radius: 10px 10px 0 0;
+            transition: transform 0.5s ease;
+        }
+
+        .activity-card:hover img {
+            transform: scale(1.1);
         }
 
         .caption {
@@ -258,6 +280,48 @@
             font-weight: 600;
             background-color: #f5f5f5;
             margin: 0;
+            transition: background-color 0.3s ease;
+        }
+
+        .activity-card:hover .caption {
+            background-color: #ffc30f;
+            color: #333;
+        }
+
+        .activity-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 250px;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .activity-card:hover .activity-overlay {
+            opacity: 1;
+        }
+
+        .view-more {
+            padding: 10px 20px;
+            background-color: #ffc30f;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .view-more:hover {
+            background-color: #ba8c00;
+            color: white;
         }
 
         /* Footer Styles */
@@ -369,7 +433,6 @@
             font-weight: bold;
             transition: background-color 0.3s ease;
             width: 100%;
-            margin-left: 10px;
         }
         
         .subscribe-btn:hover {
@@ -411,25 +474,125 @@
             margin: 0;
         }
 
+        @media (max-width: 992px) {
+            .footer-container {
+                flex-wrap: wrap;
+            }
+            
+            .footer-logo-section {
+                flex: 0 0 100%;
+                margin-bottom: 30px;
+            }
+            
+            .footer-column {
+                flex: 0 0 calc(50% - 30px);
+                margin-bottom: 30px;
+            }
+        }
+
         @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-container {
+                position: relative;
+            }
+            
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: gainsboro;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                gap: 15px;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                display: none;
+                z-index: 1000;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
             .section {
                 flex-direction: column;
             }
 
             .map, .info {
                 max-width: 100%;
+                padding: 0;
+                margin-bottom: 20px;
             }
 
-            .gallery img {
-                max-width: 100%;
+            .info h3 {
+                font-size: 18px;
             }
-            
-            .footer-container {
-                flex-direction: column;
+
+            .info p {
+                font-size: 16px;
+            }
+
+            .header h1 {
+                font-size: 40px;
+            }
+
+            .header p {
+                font-size: 18px;
+            }
+
+            .activity-card {
+                width: 100%;
+                max-width: 450px;
             }
             
             .footer-column {
+                flex: 0 0 100%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .gallery {
+                gap: 15px;
+            }
+            
+            .activity-card {
                 width: 100%;
+                max-width: 100%;
+            }
+            
+            .know-more-btn {
+                padding: 12px 25px;
+                font-size: 16px;
+            }
+            
+            .header {
+                padding: 60px 15px;
+                min-height: 300px;
+            }
+            
+            .header h1 {
+                font-size: 30px;
+            }
+            
+            .header p {
+                font-size: 16px;
+            }
+            
+            .activities h3 {
+                font-size: 22px;
+                margin-bottom: 30px;
+            }
+            
+            .register-btn {
+                padding: 12px 25px;
+            }
+            
+            .footer-logo-section, .footer-column {
+                padding: 0 10px;
             }
         }
     </style>
@@ -440,8 +603,11 @@
         <!-- Navigation Bar -->
         <nav class="navbar" data-aos-duration="800">
             <div class="nav-container">
-                <div class="nav-logo">Joan of Arc Youth</div>
-                <ul class="nav-links">
+                <div class="nav-logo">JAOYO</div>
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links" id="navLinks">
                     <li><a href="#">Home</a></li>
                     <li><a href="#">About</a></li>
                     <li><a href="#">Programs</a></li>
@@ -460,7 +626,7 @@
                 Leading with Courage!</p>
 
             <button class="know-more-btn">
-                KNOW MORE <span class="arrow">↓</span>
+                KNOW MORE <span class="arrow">➡</span>
             </button>
         </div>
 
@@ -478,14 +644,23 @@
             <h3>RECENTS ACTIVITIES</h3>
             <div class="gallery">
                 <div class="activity-card">
+                    <div class="activity-overlay">
+                        <button class="view-more">View Details</button>
+                    </div>
                     <img src="IMAGES/bingo.jpg" alt="Bingo Project" />
                     <p class="caption">Bingo Project</p>
                 </div>
                 <div class="activity-card">
+                    <div class="activity-overlay">
+                        <button class="view-more">View Details</button>
+                    </div>
                     <img src="IMAGES/party.jpg" alt="Christmas Party" />
                     <p class="caption">Christmas Party</p>
                 </div>
                 <div class="activity-card">
+                    <div class="activity-overlay">
+                        <button class="view-more">View Details</button>
+                    </div>
                     <img src="IMAGES/clean.jpg" alt="Clean Up Drive" />
                     <p class="caption">Clean-Up Drive</p>
                 </div>
@@ -561,6 +736,29 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
         AOS.init();
+
+        // Mobile menu toggle
+        document.getElementById('menuToggle').addEventListener('click', function () {
+            document.getElementById('navLinks').classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function (event) {
+            const isClickInsideMenu = document.getElementById('navLinks').contains(event.target);
+            const isClickOnToggle = document.getElementById('menuToggle').contains(event.target);
+
+            if (!isClickInsideMenu && !isClickOnToggle && document.getElementById('navLinks').classList.contains('active')) {
+                document.getElementById('navLinks').classList.remove('active');
+            }
+        });
+
+        // Activity card view details
+        document.querySelectorAll('.view-more').forEach(button => {
+            button.addEventListener('click', function () {
+                alert('Viewing details for this activity...');
+                // Add navigation logic here
+            });
+        });
 
         // Register button alert
         document.querySelector('.register-btn').addEventListener('click', function () {
