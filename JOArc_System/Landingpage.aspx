@@ -21,12 +21,15 @@
 
         /* Navigation Styles */
         .navbar {
-            background-color: gainsboro;
+            background-color: rgba(220, 220, 220, 0.8); /* Changed from solid to semi-transparent */
+            backdrop-filter: blur(10px); /* Added blur effect */
+            -webkit-backdrop-filter: blur(10px); /* For Safari */
             padding: 20px 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
             z-index: 1000;
+            transition: all 0.3s ease;
         }
 
         .nav-container {
@@ -56,25 +59,45 @@
             color: #333;
             font-weight: 500;
             transition: color 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 4px;
+            position: relative;
         }
 
         .nav-links li a:hover {
             color: #ba8c00;
         }
 
-        .login-btn {
-            background-color:#ffc30f;
-            border: none;
-            padding: 12px 30px;
-            font-family : Arial;
+        /* Active menu item style */
+        .nav-links li a.active {
+            color: #ba8c00;
             font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
         }
 
-        .login-btn:hover {
-            background-color: #002c94;
+        .nav-links li a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #ffc30f;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 0.6;
+                transform: scaleX(0.92);
+            }
+            50% {
+                opacity: 1;
+                transform: scaleX(1);
+            }
+            100% {
+                opacity: 0.6;
+                transform: scaleX(0.92);
+            }
         }
 
         /* Mobile menu button */
@@ -136,7 +159,7 @@
             position: relative;
         }
 
-        .know-more-btn .arrow {
+        .know-more-btn .arrow{
             display: inline-block;
             font-size: 20px;
             font-weight: bold;
@@ -164,6 +187,42 @@
             background-color: white;
         }
 
+        .join-now-btn {
+            margin-top: 35px;
+   
+            padding: 15px 20px;
+            background-color: #ffc30f;
+            font-size: 15px;
+            font-family: 'Arial Black';
+            font-weight: bold;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            text-transform: uppercase;
+            color: #333;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+            text-align: center;
+            width: 100%;
+            max-width: 300px;
+        }
+        
+
+        .join-now-btn:hover {
+            background-color: #ba8c00;
+            transform: scale(1.05);
+            color: white;
+            padding-right: 30px; /* makes space for the arrow */
+        }
+
+        .join-now-btn:hover {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
         .map {
             width: 100%;
             max-width: 50%;
@@ -178,6 +237,8 @@
             width: 100%;
             max-width: 50%;
             padding: 0 20px;
+            display: flex;
+            flex-direction: column;
         }
 
         .info h3 {
@@ -189,21 +250,6 @@
             font-size: 18px;
             margin-top: 10px;
             font-family: Calibri;
-        }
-
-        .register-btn {
-            margin-top: 15px;
-            padding: 15px 30px;
-            background-color: #ffc30f;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-            border-radius: 8px;
-        }
-
-        .register-btn:hover {
-            background-color: #ba8c00;
-            transform: scale(1.05);
         }
 
         .activities {
@@ -393,14 +439,14 @@
             margin-bottom: 12px;
         }
         
-        .footer-links a {
+        .footer-links li a {
             color: #555;
             text-decoration: none;
             transition: color 0.3s ease;
             font-size: 14px;
         }
         
-        .footer-links a:hover {
+        .footer-links li a:hover {
             color: #ba8c00;
         }
         
@@ -504,7 +550,9 @@
                 top: 100%;
                 left: 0;
                 right: 0;
-                background-color: gainsboro;
+                background-color: rgba(220, 220, 220, 0.95);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
                 flex-direction: column;
                 align-items: center;
                 padding: 20px 0;
@@ -564,7 +612,7 @@
                 max-width: 100%;
             }
             
-            .know-more-btn {
+            .know-more-btn, .join-now-btn {
                 padding: 12px 25px;
                 font-size: 16px;
             }
@@ -587,10 +635,6 @@
                 margin-bottom: 30px;
             }
             
-            .register-btn {
-                padding: 12px 25px;
-            }
-            
             .footer-logo-section, .footer-column {
                 padding: 0 10px;
             }
@@ -608,18 +652,17 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 <ul class="nav-links" id="navLinks">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="about.aspx">About</a></li>
                     <li><a href="#">Programs</a></li>
                     <li><a href="#">Activities</a></li>
                     <li><a href="#">Contact</a></li>
                 </ul>
-                <button class="login-btn">Log In</button>
             </div>
         </nav>
 
         <!-- Hero Banner -->
-        <div class="header" data-aos="fade-up" data-aos-duration="1500">
+        <div class="header" data-aos-duration="1500">
             <h1>Joan Arc Youth Organization:</h1>
             <p>Empowering the Youth,
                 Igniting Purpose, and<br />
@@ -630,12 +673,14 @@
             </button>
         </div>
 
-        <!-- Info + Map Section -->
+        <!-- Info Section -->
         <div class="section">
             <div class="info" data-aos="fade-left" data-aos-duration="1000">
                 <h3>ARE YOU A YOUNG LEADER READY TO MAKE A DIFFERENCE IN YOUR COMMUNITY?</h3>
                 <p>You're in the right place! Our organization empowers youth with leadership opportunities, skill-building programs, and community initiatives to help you grow and make a real impact.</p>
-                <button type="button" class="register-btn">REGISTER NOW!</button>
+                <button class="join-now-btn">
+                    JOIN NOW <span class="arrow"></span>
+                </button>
             </div>
         </div>
 
@@ -703,7 +748,6 @@
                     <h3 class="footer-title">Useful Links</h3>
                     <ul class="footer-links">
                         <li><a href="#">Know More</a></li>
-                        <li><a href="#">Register</a></li>
                         <li><a href="#">Volunteer</a></li>
                         <li><a href="#">Donate</a></li>
                         <li><a href="#">FAQ</a></li>
@@ -760,18 +804,6 @@
             });
         });
 
-        // Register button alert
-        document.querySelector('.register-btn').addEventListener('click', function () {
-            alert('Redirecting to registration...');
-            // window.location.href = 'Register.aspx';
-        });
-
-        // Login button alert
-        document.querySelector('.login-btn').addEventListener('click', function () {
-            alert('Redirecting to login...');
-            // window.location.href = 'Login.aspx';
-        });
-
         // Subscribe button alert
         document.querySelector('.subscribe-btn').addEventListener('click', function () {
             var email = document.querySelector('.subscribe-input').value;
@@ -781,6 +813,24 @@
             } else {
                 alert('Please enter a valid email address.');
             }
+        });
+
+        // Join now button alert
+        document.querySelector('.join-now-btn').addEventListener('click', function () {
+            alert('Thank you for your interest! We\'ll direct you to our registration form.');
+            // Add navigation/form display logic here
+        });
+
+        // Add active class to current menu item
+        document.querySelectorAll('.nav-links li a').forEach(item => {
+            item.addEventListener('click', function () {
+                // Remove active class from all items
+                document.querySelectorAll('.nav-links li a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                // Add active class to clicked item
+                this.classList.add('active');
+            });
         });
     </script>
 </body>
