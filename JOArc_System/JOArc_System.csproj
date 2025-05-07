@@ -119,7 +119,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="about.aspx" />
+    <Content Include="activity.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="IMAGES\academicachiever.jpg" />
+    <Content Include="IMAGES\art.jpg" />
+    <Content Include="IMAGES\food.jpg" />
+    <Content Include="IMAGES\leadershippaul.png" />
     <Content Include="IMAGES\bingo.jpg" />
     <Content Include="IMAGES\clean.jpg" />
     <Content Include="IMAGES\j0an.jpg" />
@@ -128,6 +133,7 @@
     <Content Include="IMAGES\orgimg.jpg" />
     <Content Include="IMAGES\party.jpg" />
     <Content Include="JoinApplicationHandler.aspx" />
+    <Content Include="program.aspx" />
     <Content Include="SubscriptionHandler.aspx" />
     <Content Include="Web.config" />
     <Content Include="Landingpage.aspx" />
@@ -140,6 +146,13 @@
     <Compile Include="about.aspx.designer.cs">
       <DependentUpon>about.aspx</DependentUpon>
     </Compile>
+    <Compile Include="activity.aspx.cs">
+      <DependentUpon>activity.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="activity.aspx.designer.cs">
+      <DependentUpon>activity.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -149,6 +162,13 @@
     </Compile>
     <Compile Include="JoinApplicationHandler.aspx.designer.cs">
       <DependentUpon>JoinApplicationHandler.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="program.aspx.cs">
+      <DependentUpon>program.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="program.aspx.designer.cs">
+      <DependentUpon>program.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Landingpage.aspx.cs">

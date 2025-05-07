@@ -393,6 +393,277 @@
                 margin-bottom: 30px;
             }
         }
+
+            /* Footer Styles */
+    .footer {
+        background-color: gainsboro;
+        padding: 40px 0 0 0;
+        border-top: 1px solid #e0e0e0;
+        font-family: Arial, sans-serif;
+        margin: 0;
+    }
+    
+    .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 0 20px 30px;
+    }
+    
+    .footer-logo-section {
+        flex: 1;
+        min-width: 250px;
+        padding-right: 20px;
+    }
+    
+    .footer-logo {
+        font-weight: bold;
+        font-size: 24px;
+        color: #ba8c00;
+        margin-bottom: 15px;
+    }
+    
+    .footer-tagline {
+        font-size: 16px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 15px;
+    }
+    
+    .footer-about-text {
+        font-size: 14px;
+        color: #555;
+        margin-bottom: 15px;
+        line-height: 1.5;
+    }
+    
+    .footer-column {
+        flex: 1;
+        min-width: 180px;
+        padding: 0 15px;
+    }
+    
+    .footer-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: #333;
+        position: relative;
+    }
+    
+    .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .footer-links li {
+        margin-bottom: 12px;
+    }
+    
+    .footer-links li a {
+        color: #555;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        font-size: 14px;
+    }
+    
+    .footer-links li a:hover {
+        color: #ba8c00;
+    }
+    
+    .footer-location {
+        font-size: 14px;
+        color: #555;
+        margin-bottom: 15px;
+        line-height: 1.6;
+    }
+    
+    .subscribe-form {
+        margin-top: 15px;
+    }
+    
+    .subscribe-input {
+        padding: 10px;
+        width: 100%;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
+    
+    .subscribe-btn {
+        background-color: #ffc30f;
+        color: #333;
+        border: none;
+        padding: 10px 20px;
+        margin-left: 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+        width: 100%;
+    }
+    
+    .subscribe-btn:hover {
+        background-color: #ba8c00;
+        color: white;
+    }
+    
+    .social-icons {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+    }
+    
+    .social-icons a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background-color: #eee;
+        color: #555;
+        transition: all 0.3s ease;
+    }
+    
+    .social-icons a:hover {
+        background-color: #ffc30f;
+        color: #333;
+        transform: translateY(-3px);
+    }
+    
+    .copyright {
+        background-color: #222;
+        color: #fff;
+        text-align: center;
+        padding: 25px 0;
+        font-size: 14px;
+        margin: 0;
+    }
+
+    @media (max-width: 992px) {
+        .footer-container {
+            flex-wrap: wrap;
+        }
+        
+        .footer-logo-section {
+            flex: 0 0 100%;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column {
+            flex: 0 0 calc(50% - 30px);
+            margin-bottom: 30px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .menu-toggle {
+            display: block;
+        }
+        
+        .nav-container {
+            position: relative;
+        }
+        
+        .nav-links {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: rgba(220, 220, 220, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 0;
+            gap: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: none;
+            z-index: 1000;
+        }
+        
+        .nav-links.active {
+            display: flex;
+        }
+        
+        .section {
+            flex-direction: column;
+        }
+
+        .map, .info {
+            max-width: 100%;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        .info h3 {
+            font-size: 18px;
+        }
+
+        .info p {
+            font-size: 16px;
+        }
+
+        .header h1 {
+            font-size: 40px;
+        }
+
+        .header p {
+            font-size: 18px;
+        }
+
+        .activity-card {
+            width: 100%;
+            max-width: 450px;
+        }
+        
+        .footer-column {
+            flex: 0 0 100%;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .gallery {
+            gap: 15px;
+        }
+        
+        .activity-card {
+            width: 100%;
+            max-width: 100%;
+        }
+        
+        .know-more-btn, .join-now-btn {
+            padding: 12px 25px;
+            font-size: 16px;
+        }
+        
+        .header {
+            padding: 60px 15px;
+            min-height: 300px;
+        }
+        
+        .header h1 {
+            font-size: 30px;
+        }
+        
+        .header p {
+            font-size: 16px;
+        }
+        
+        .activities h3 {
+            font-size: 22px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-logo-section, .footer-column {
+            padding: 0 10px;
+        }
+    }
     </style>
 </head>
 <body>
@@ -406,15 +677,15 @@
                 <ul class="nav-links" id="navLinks">
                     <li><a href="Landingpage.aspx">Home</a></li>
                     <li><a href="about.aspx" class="active">About</a></li>
-                    <li><a href="#">Programs</a></li>
-                    <li><a href="#">Activities</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="program.aspx">Programs</a></li>
+                    <li><a href="activity.aspx">Activities</a></li>
+                  
                 </ul>
             </div>
         </nav>
         <div class="about-intro">
             <div class="intro-text">
-                <h1>JAOYO</h1>
+                <h1>JOAYO</h1>
                 <div class="intro-decorative-line"></div>
                 <p>The Joan Arc Youth Organization stands as a beacon for young individuals, dedicated to empowering them, igniting their sense of purpose, and fostering leadership driven by courage. With a vision to shape the next generation of impactful leaders, the organization likely engages in a variety of programs and activities designed to cultivate essential skills, build character, and inspire positive change within their communities. By focusing on youth development, the Joan Arc Youth Organization aims to equip young people with the tools and mindset needed to navigate the challenges of tomorrow and lead with unwavering conviction.</p>
             </div>
@@ -550,6 +821,68 @@
                 <!-- Indicators will be generated by JavaScript -->
             </div>
         </section>
+
+         <!-- Footer Section -->
+ <footer class="footer">
+     <div class="footer-container">
+         <!-- Logo and About Section -->
+         <div class="footer-logo-section">
+             <div class="footer-logo">Joan of Arc Youth</div>
+             <p class="footer-tagline">Empowering the Youth, Igniting Purpose</p>
+             <p class="footer-about-text">We're a youth organization dedicated to building leadership skills, community service, and personal growth through meaningful activities and programs.</p>
+             <div class="social-icons">
+                 <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                 <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                 <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                 <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                 <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                 <a href="#" aria-label="Phone"><i class="fas fa-phone"></i></a>
+                 <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+             </div>
+         </div>
+         
+         <!-- Information Links -->
+         <div class="footer-column">
+             <h3 class="footer-title">Information</h3>
+             <ul class="footer-links">
+                 <li><a href="#">Home</a></li>
+                 <li><a href="#">About</a></li>
+                 <li><a href="#">Programs</a></li>
+                 <li><a href="#">Activities</a></li>
+                 <li><a href="#">Contact</a></li>
+             </ul>
+         </div>
+         
+         <!-- Useful Links -->
+         <div class="footer-column">
+             <h3 class="footer-title">Useful Links</h3>
+             <ul class="footer-links">
+                 <li><a href="#">Know More</a></li>
+                 <li><a href="#">Volunteer</a></li>
+                 <li><a href="#">Donate</a></li>
+                 <li><a href="#">FAQ</a></li>
+             </ul>
+         </div>
+         
+         <!-- Location and Subscribe -->
+         <div class="footer-column">
+             <h3 class="footer-title">Location</h3>
+             <p class="footer-location">673 Quirino Hwy, Novaliches<br/>Quezon City, Metro Manila</p>
+             <p class="footer-location">Email: info@joanarcyouth.org<br/>Phone: +63 123 456 7890</p>
+             
+             <h3 class="footer-title">Subscribe on us:</h3>
+             <div class="subscribe-form">
+                 <input type="email" class="subscribe-input" placeholder="Email" />
+                 <button type="button" class="subscribe-btn">Submit</button>
+             </div>
+         </div>
+     </div>
+     
+     <!-- Copyright Section -->
+     <div class="copyright">
+         © 2025 - 2026 Joan Arc Youth Organization. All rights reserved.
+     </div>
+ </footer>
         
         <script>
             document.addEventListener('DOMContentLoaded', function () {
