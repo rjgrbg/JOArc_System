@@ -13,7 +13,7 @@ namespace JOArc_System
         {
             if (!IsPostBack)
             {
-                // Initialize dropdowns if needed
+                // Initialize page state
                 successMessage.Visible = false;
                 applicationFormPanel.Visible = true;
             }
@@ -31,26 +31,27 @@ namespace JOArc_System
 
                 if (SaveApplicationToDatabase())
                 {
+                    string userEmail = txtEmail.Text.Trim();
+
                     try
                     {
                         SendConfirmationEmail();
+                        System.Diagnostics.Debug.WriteLine("Confirmation email sent successfully to: " + userEmail);
                     }
                     catch (Exception emailEx)
                     {
-                        // Log email error but continue (application was saved)
                         System.Diagnostics.Debug.WriteLine("Email error: " + emailEx.Message);
                     }
 
-                    // Show success message and hide form
                     successMessage.Visible = true;
                     applicationFormPanel.Visible = false;
 
-                    // Register script to show success message and reset form
-                    ScriptManager.RegisterStartupScript(this, GetType(), "showSuccess",
-                        "document.getElementById('successMessage').style.display = 'block';" +
-                        "document.getElementById('applicationFormPanel').style.display = 'none';", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "formSubmittedAlert",
+                        "alert('Your application form has been submitted successfully. Please check your email for further instructions.');", true);
 
-                    // Reset form for future use
+                    ScriptManager.RegisterStartupScript(this, GetType(), "scrollToTop",
+                        "window.scrollTo(0, 0);", true);
+
                     ResetForm();
                 }
                 else
@@ -61,15 +62,15 @@ namespace JOArc_System
             catch (Exception ex)
             {
                 ShowErrorMessage("Unexpected error: " + ex.Message);
-                // Log the full exception details
                 System.Diagnostics.Debug.WriteLine("Error in form submission: " + ex.ToString());
             }
         }
 
         private void ShowErrorMessage(string message)
         {
+            string safeMessage = message.Replace("'", "\\'");
             ScriptManager.RegisterStartupScript(this, GetType(), "validationError",
-                "alert('" + message.Replace("'", "\\'") + "');", true);
+                "alert('" + safeMessage + "');", true);
         }
 
         private bool ValidateForm()
@@ -93,10 +94,8 @@ namespace JOArc_System
             {
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
-                    // First check if the connection can be established
                     connection.Open();
 
-                    // Use a regular INSERT query instead of a stored procedure if you have issues
                     string query = @"INSERT INTO applications 
                     (FirstName, LastName, Email, Phone, AgeGroup, Interest, Address, Motivation, SubmissionDate, Status) 
                     VALUES 
@@ -122,10 +121,7 @@ namespace JOArc_System
             }
             catch (MySqlException sqlEx)
             {
-                // Log the specific database error
                 System.Diagnostics.Debug.WriteLine("MySQL Error: " + sqlEx.ToString());
-
-                // Show more details in development environment
                 ShowErrorMessage("Database error: " + sqlEx.Message);
                 return false;
             }
@@ -138,14 +134,14 @@ namespace JOArc_System
 
         private void SendConfirmationEmail()
         {
+            string userEmail = txtEmail.Text.Trim();
+            string userName = $"{txtFirstName.Text.Trim()} {txtLastName.Text.Trim()}";
+
             try
             {
-                string userEmail = txtEmail.Text.Trim();
-
-                // Create the mail message
                 MailMessage mail = new MailMessage();
                 mail.From = new MailAddress("garabiag.arjay04@gmail.com", "Joan of Arc Youth Organization");
-                mail.To.Add(userEmail); // Send to the user's email address
+                mail.To.Add(userEmail);
                 mail.Subject = "Your Application to Joan of Arc Youth Organization";
 
                 string body = $@"
@@ -156,7 +152,13 @@ namespace JOArc_System
         .container {{ max-width: 600px; margin: 0 auto; padding: 20px; }}
         .header {{ background-color: #ffc30f; padding: 20px; text-align: center; }}
         .content {{ padding: 20px; background-color: #f9f9f9; }}
+        .requirements {{ background-color: #fff; padding: 15px; border-left: 4px solid #ffc30f; margin: 20px 0; }}
+        .requirements h3 {{ color: #ba8c00; margin-top: 0; }}
+        .requirements ul {{ padding-left: 20px; }}
         .footer {{ padding: 20px; text-align: center; font-size: 12px; color: #777; }}
+        .button {{ display: inline-block; background-color: #ffc30f; color: #333; padding: 10px 20px; 
+                text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 15px; }}
+        .button:hover {{ background-color: #ba8c00; color: #fff; }}
     </style>
 </head>
 <body>
@@ -166,18 +168,37 @@ namespace JOArc_System
         </div>
         <div class='content'>
             <p>Dear {txtFirstName.Text} {txtLastName.Text},</p>
-            <p>Thank you for applying to join the Joan of Arc Youth Organization. We've received your application!</p>
+            <p>Thank you for applying to join the Joan of Arc Youth Organization. We've received your application and are excited about your interest in our community!</p>
+            
+            <p>Here's a summary of your application details:</p>
             <ul>
+                <li><strong>Name:</strong> {txtFirstName.Text} {txtLastName.Text}</li>
                 <li><strong>Email:</strong> {txtEmail.Text}</li>
                 <li><strong>Phone:</strong> {txtPhone.Text}</li>
                 <li><strong>Age Group:</strong> {ddlAge.SelectedItem.Text}</li>
                 <li><strong>Interest:</strong> {ddlInterests.SelectedItem.Text}</li>
             </ul>
-            <p>Our team will get back to you within 3–5 business days.</p>
+            
+            <div class='requirements'>
+                <h3>Next Steps: Required Documents</h3>
+                <p>To complete your application process, please bring the following documents to our office:</p>
+                <ul>
+                    <li>Valid ID (School ID, Government ID, etc.)</li>
+                    <li>1 recent 2x2 photo</li>
+                    <li>Parent/Guardian consent form (for applicants under 18)</li>
+                    <li>Brief resume or list of previous activities/volunteer experience (if any)</li>
+                </ul>
+                <p>Office Address: 673 Quirino Hwy, Novaliches, Quezon City</p>
+                <p>Office Hours: Monday to Friday, 9:00 AM - 5:00 PM</p>
+            </div>
+            
+            <p>Our team will review your application and get back to you within 3–5 business days. If you have any questions, feel free to reply to this email or contact us directly.</p>
+            
             <p>Best regards,<br/>Joan of Arc Youth Team</p>
         </div>
         <div class='footer'>
-            <p>673 Quirino Hwy, Novaliches, QC | info@joanarcyouth.org</p>
+            <p>673 Quirino Hwy, Novaliches, QC | info@joanarcyouth.org | +63 123 456 7890</p>
+            <p>This is an automated message. Please do not reply directly to this email.</p>
         </div>
     </div>
 </body>
@@ -186,33 +207,21 @@ namespace JOArc_System
                 mail.Body = body;
                 mail.IsBodyHtml = true;
 
-                // Log the email for debugging
-                System.Diagnostics.Debug.WriteLine("Sending email to: " + userEmail);
-                System.Diagnostics.Debug.WriteLine("Email subject: " + mail.Subject);
-
-                // Set up the SMTP client with your provided credentials
                 SmtpClient smtpClient = new SmtpClient();
                 smtpClient.Host = "smtp.gmail.com";
                 smtpClient.Port = 587;
                 smtpClient.EnableSsl = true;
                 smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
                 smtpClient.UseDefaultCredentials = false;
-                smtpClient.Credentials = new System.Net.NetworkCredential("garabiag.arjay04@gmail.com", "epxc wknm nalj esks");
+                smtpClient.Credentials = new System.Net.NetworkCredential("garabiag.arjay04@gmail.com", "zxsm ynft otfl iyda");
 
-                // Send the email
                 smtpClient.Send(mail);
-
-                System.Diagnostics.Debug.WriteLine("Email sent successfully");
+                System.Diagnostics.Debug.WriteLine($"Confirmation email sent successfully to {userEmail}");
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine("Email error: " + ex.Message);
-                // Log detailed error for debugging
-                System.Diagnostics.Debug.WriteLine("Detailed email error: " + ex.ToString());
-
-                // Instead of re-throwing, we'll just log the error
-                // This prevents the application from failing if email sending fails
-                // The user will still get a success message for their application
+                System.Diagnostics.Debug.WriteLine($"Failed to send email to {userEmail}: {ex.Message}");
+                System.Diagnostics.Debug.WriteLine($"Detailed error: {ex}");
             }
         }
 
@@ -227,6 +236,14 @@ namespace JOArc_System
             txtAddress.Text = "";
             txtMotivation.Text = "";
             chkAgree.Checked = false;
+        }
+
+        // ✅ NEW: Method for Close Button
+        protected void btnClose_ServerClick(object sender, EventArgs e)
+        {
+            ResetForm(); // Clear all fields
+            successMessage.Visible = false; // Hide success message
+            applicationFormPanel.Visible = true; // Re-show the form
         }
     }
 }

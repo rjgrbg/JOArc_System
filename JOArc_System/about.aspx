@@ -14,65 +14,70 @@
         }
 
         /* Navigation Styles */
-        .navbar {
-            background-color: rgba(220, 220, 220, 0.8);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 20px 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: auto;
-        }
-        
-        /* Logo Styles */
-        .nav-logo {
-            font-weight: bold;
-            font-size: 22px;
-            color: #ba8c00;
-        }
-        
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-            margin: 0;
-            padding: 0;
-        }
-        .nav-links li a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            padding: 8px 12px;
-            border-radius: 4px;
-            position: relative;
-        }
-        .nav-links li a:hover {
-            color: #ba8c00;
-        }
-        .nav-links li a.active {
-            color: #ba8c00;
-            font-weight: bold;
-        }
-        .nav-links li a.active::after {
-            content: '';
-            position: absolute;
-            bottom: -3px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background-color: #ffc30f;
-            animation: pulse 1.5s infinite;
-        }
+ .navbar {
+     background-color: rgba(220, 220, 220, 0.8); /* Changed from solid to semi-transparent */
+     backdrop-filter: blur(10px); /* Added blur effect */
+     -webkit-backdrop-filter: blur(10px); /* For Safari */
+     padding: 20px 20px;
+     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+     position: sticky;
+     top: 0;
+     z-index: 1000;
+     transition: all 0.3s ease;
+ }
+
+ .nav-container {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     max-width: 1200px;
+     margin: auto;
+ }
+
+ .nav-logo {
+     font-weight: bold;
+     font-size: 20px;
+     color:#ba8c00;
+ }
+
+ .nav-links {
+     list-style: none;
+     display: flex;
+     gap: 20px;
+     margin: 0;
+     padding: 0;
+ }
+
+ .nav-links li a {
+     text-decoration: none;
+     color: #333;
+     font-weight: 500;
+     transition: color 0.3s ease;
+     padding: 8px 12px;
+     border-radius: 4px;
+     position: relative;
+ }
+
+ .nav-links li a:hover {
+     color: #ba8c00;
+ }
+
+ /* Active menu item style */
+ .nav-links li a.active {
+     color: #ba8c00;
+     font-weight: bold;
+ }
+
+ .nav-links li a.active::after {
+     content: '';
+     position: absolute;
+     bottom: -3px;
+     left: 0;
+     width: 100%;
+     height: 3px;
+     background-color: #ffc30f;
+     animation: pulse 1.5s infinite;
+ }
         @keyframes pulse {
             0% { opacity: 0.6; transform: scaleX(0.92); }
             50% { opacity: 1; transform: scaleX(1); }
@@ -679,6 +684,8 @@
                     <li><a href="about.aspx" class="active">About</a></li>
                     <li><a href="program.aspx">Programs</a></li>
                     <li><a href="activity.aspx">Activities</a></li>
+                    <li><a href="contact.aspx">Contact</a></li>
+                      <li><a href="donation.aspx">Donate</a></li>
                   
                 </ul>
             </div>

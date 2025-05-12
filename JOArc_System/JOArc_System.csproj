@@ -120,16 +120,23 @@
   <ItemGroup>
     <Content Include="about.aspx" />
     <Content Include="activity.aspx" />
+    <Content Include="contact.aspx" />
+    <Content Include="Donation.aspx" />
     <Content Include="Global.asax" />
     <Content Include="IMAGES\academicachiever.jpg" />
     <Content Include="IMAGES\art.jpg" />
     <Content Include="IMAGES\food.jpg" />
+    <Content Include="IMAGES\gcash.jpg" />
+    <Content Include="IMAGES\gcashqr.jpg" />
     <Content Include="IMAGES\leadershippaul.png" />
     <Content Include="IMAGES\bingo.jpg" />
     <Content Include="IMAGES\clean.jpg" />
     <Content Include="IMAGES\j0an.jpg" />
+    <Content Include="IMAGES\logo.bg.png" />
     <Content Include="IMAGES\logo.png" />
     <Content Include="IMAGES\map.jpg" />
+    <Content Include="IMAGES\maya.jpg" />
+    <Content Include="IMAGES\mayaqr.jpg" />
     <Content Include="IMAGES\orgimg.jpg" />
     <Content Include="IMAGES\party.jpg" />
     <Content Include="JoinApplicationHandler.aspx" />
@@ -152,6 +159,20 @@
     </Compile>
     <Compile Include="activity.aspx.designer.cs">
       <DependentUpon>activity.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="contact.aspx.cs">
+      <DependentUpon>contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="contact.aspx.designer.cs">
+      <DependentUpon>contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Donation.aspx.cs">
+      <DependentUpon>Donation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Donation.aspx.designer.cs">
+      <DependentUpon>Donation.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

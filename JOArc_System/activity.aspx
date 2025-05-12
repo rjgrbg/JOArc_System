@@ -770,6 +770,8 @@
                     <li><a href="about.aspx">About</a></li>
                     <li><a href="program.aspx">Programs</a></li>
                     <li><a href="activity.aspx" class="active">Activities</a></li>
+                    <li><a href="contact.aspx">Contact</a></li>
+                      <li><a href="donation.aspx">Donate</a></li>
                  
                 </ul>
             </div>
@@ -1042,18 +1044,8 @@
                 }
             });
         });
-        
-        // Sticky navigation effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.style.padding = '15px 20px';
-                navbar.style.boxShadow = '0 4px 10px rgba(0,0,0,0.1)';
-            } else {
-                navbar.style.padding = '20px 20px';
-                navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
-            }
-        });
+
+     
     </script>
 </body>
 </html>

@@ -13,66 +13,71 @@
             color: #333;
         }
 
-        /* Navigation Styles */
-        .navbar {
-            background-color: rgba(220, 220, 220, 0.8);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 15px 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: auto;
-        }
-        
-        /* Logo Styles */
-        .nav-logo {
-            font-weight: bold;
-            font-size: 22px;
-            color: #ba8c00;
-        }
-        
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-            margin: 0;
-            padding: 0;
-        }
-        .nav-links li a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            padding: 8px 12px;
-            border-radius: 4px;
-            position: relative;
-        }
-        .nav-links li a:hover {
-            color: #ba8c00;
-        }
-        .nav-links li a.active {
-            color: #ba8c00;
-            font-weight: bold;
-        }
-        .nav-links li a.active::after {
-            content: '';
-            position: absolute;
-            bottom: -3px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background-color: #ffc30f;
-            animation: pulse 1.5s infinite;
-        }
+       /* Navigation Styles */
+ .navbar {
+     background-color: rgba(220, 220, 220, 0.8); /* Changed from solid to semi-transparent */
+     backdrop-filter: blur(10px); /* Added blur effect */
+     -webkit-backdrop-filter: blur(10px); /* For Safari */
+     padding: 20px 20px;
+     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+     position: sticky;
+     top: 0;
+     z-index: 1000;
+     transition: all 0.3s ease;
+ }
+
+ .nav-container {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     max-width: 1200px;
+     margin: auto;
+ }
+
+ .nav-logo {
+     font-weight: bold;
+     font-size: 20px;
+     color:#ba8c00;
+ }
+
+ .nav-links {
+     list-style: none;
+     display: flex;
+     gap: 20px;
+     margin: 0;
+     padding: 0;
+ }
+
+ .nav-links li a {
+     text-decoration: none;
+     color: #333;
+     font-weight: 500;
+     transition: color 0.3s ease;
+     padding: 8px 12px;
+     border-radius: 4px;
+     position: relative;
+ }
+
+ .nav-links li a:hover {
+     color: #ba8c00;
+ }
+
+ /* Active menu item style */
+ .nav-links li a.active {
+     color: #ba8c00;
+     font-weight: bold;
+ }
+
+ .nav-links li a.active::after {
+     content: '';
+     position: absolute;
+     bottom: -3px;
+     left: 0;
+     width: 100%;
+     height: 3px;
+     background-color: #ffc30f;
+     animation: pulse 1.5s infinite;
+ }
         @keyframes pulse {
             0% { opacity: 0.6; transform: scaleX(0.92); }
             50% { opacity: 1; transform: scaleX(1); }
@@ -89,15 +94,19 @@
 
         /* Header Section */
         .programs-header {
-            background: linear-gradient(to right, #ffe0b2, #ffb300);
-            padding: 50px 20px;
-            text-align: center;
-            margin-bottom: 50px;
+           background-image:linear-gradient(90deg,rgba(0, 2, 3, 1) 0%, rgba(31, 26, 0, 1) 51%, rgba(92, 73, 0, 1) 100%);
+ background-size: cover;
+ background-position: center;
+ color: white;
+ padding: 80px 20px;
+ text-align: center;
         }
         .programs-header h1 {
             font-size: 2.5em;
-            color: #8a6103;
+            color: white;
+            font-family: 'Arial Black';
             margin-bottom: 15px;
+
         }
         .programs-header p {
             font-size: 1.1em;
@@ -132,6 +141,7 @@
         /* Program Cards Grid */
         .programs-grid {
             display: grid;
+            margin-top: 80px;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 30px;
         }
@@ -317,20 +327,27 @@
             flex-wrap: wrap;
         }
         
-        .cta-btn {
+        .cta-btn, #btnApplyNow {
             padding: 12px 25px;
             text-decoration: none;
             font-weight: bold;
+            font-size: 20px;
+            font-family: Arial;
             border-radius: 4px;
             transition: all 0.3s ease;
         }
         
-        .cta-btn-primary {
+        #btnApplyNow {
             background-color: #fff;
+            cursor: pointer;
+              padding: 15px 30px;
             color: #ba8c00;
+            font-family: Arial;
+            font-size: 15px;
+
         }
         
-        .cta-btn-primary:hover {
+        #btnApplyNow:hover {
             background-color: #f5f5f5;
             transform: translateY(-3px);
         }
@@ -586,6 +603,8 @@
                     <li><a href="about.aspx">About</a></li>
                     <li><a href="program.aspx" class="active">Programs</a></li>
                     <li><a href="activity.aspx">Activities</a></li>
+                    <li><a href="contact.aspx">Contact</a></li>
+                      <li><a href="donation.aspx">Donate</a></li>
                   
                 </ul>
             </div>
@@ -599,7 +618,7 @@
         
         <!-- Regular Programs Section -->
         <div class="programs-container">
-            <h2 class="programs-section-title">Core Programs</h2>
+           
             <div class="programs-grid">
                 <!-- Program Card 1 -->
                 <div class="program-card">
@@ -777,7 +796,7 @@
                 <h2>Ready to Join Our Programs?</h2>
                 <p>Take the first step toward personal growth, leadership development, and meaningful community impact. Join the Joan Arc Youth Organization today!</p>
                 <div class="cta-buttons">
-                    <a href="#" class="cta-btn cta-btn-primary">Apply Now</a>
+                    <asp:Button ID="btnApplyNow" runat="server" Text="Apply Now" OnClientClick="redirectToJoinNow(); return false;" CssClass="btn btn-primary" />
                     <a href="#" class="cta-btn cta-btn-secondary">Contact Us</a>
                 </div>
             </div>
@@ -845,6 +864,8 @@
             </div>
         </footer>
         </form>
+
+
         
         <script>
             document.addEventListener('DOMContentLoaded', function () {
@@ -864,17 +885,7 @@
                     });
                 }
 
-                // Navbar scroll behavior
-                const navbar = document.querySelector('.navbar');
-                window.addEventListener('scroll', function () {
-                    if (window.scrollY > 50) {
-                        navbar.style.padding = '10px 20px';
-                        navbar.style.boxShadow = '0 2px 15px rgba(0,0,0,0.1)';
-                    } else {
-                        navbar.style.padding = '15px 20px';
-                        navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
-                    }
-                });
+            
 
                 // Smooth scrolling for anchor links
                 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -944,6 +955,11 @@
                     copyrightElement.innerHTML = `© ${currentYear} - ${currentYear + 1} Joan Arc Youth Organization. All rights reserved.`;
                 }
             });
-            </script>
+
+            function redirectToJoinNow() {
+                // Redirects to Landingpage.aspx and scrolls to the form section with the ID 'joinNowSection'
+                window.location.href = 'Landingpage.aspx#joinNowSection';
+            }
+        </script>
     </body>
     </html>
